@@ -6,14 +6,14 @@ body {
 }
 
 header {
-    background-color: #ff2819;
+    background-color: #B94621;
     color: #fff;
     padding: 20px;
     text-align: center;
 }
 
 nav {
-    background-color: #7f0800;
+    background-color: #044040;
     padding: 10px;
     text-align: center;
 }
@@ -28,9 +28,9 @@ main {
     padding: 20px;
 }
 
-button {
+button{
     padding: 10px 20px;
-    background-color: #ff0000;
+    background-color: #044040;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -83,8 +83,9 @@ button {
     cursor: pointer;
 }
 #foot-block{
-   background-color: #fecfcc;
-    margin-top:150px;
+    color: #ffffff;
+    background-color: #04404080;
+    margin-top:5px;
     padding: 1.5px;
 }
 

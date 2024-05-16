@@ -4,6 +4,7 @@ import { verifyToken } from "./token.middleware.js";
 
 const router = Router();
 
-router.use("/luegoXD", verifyToken);
+//router.use("/animales", verifyToken);
+//router.use("/bienvenido", verifyToken);
 
 export default router;

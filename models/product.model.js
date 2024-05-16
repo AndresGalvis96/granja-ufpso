@@ -13,6 +13,7 @@ export const createProductModel = async (nombre, tipo, cantidad, fecha_registro,
     values: [nombre, tipo, cantidad, fecha_registro, fecha_salida, id_animal],
   };
   const result = await con.connection.query(query);
+  console.log(result, query);
   return result;
 };
 

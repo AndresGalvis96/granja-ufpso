@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
         formularioContainer.style.display = 'none';
     }
 
-    document.getElementById('formulario').addEventListener('submit', function(event) {
+    document.getElementById('formularioAnimal').addEventListener('submit', function(event) {
 
         event.preventDefault();
 

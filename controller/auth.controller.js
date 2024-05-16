@@ -23,8 +23,9 @@ export const login = async (req, res) => {
     }
 
     const token = jwt.sign({ userId: user.id }, exports.secret, { expiresIn: '1h' });
+    res.cookie('token', token, { httpOnly: true });
     console.log(token);
-    res.redirect(`/bienvenido?token=${token}`);
+    res.redirect(`/bienvenido`);
    
   } catch (error) {
     console.error(error);

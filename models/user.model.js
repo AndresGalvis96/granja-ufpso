@@ -29,12 +29,15 @@
         values: [email],
       };
 
-  
-      const rows = await db.connection.query(query);
-      console.log(rows)
+      const  rows  = await db.connection.query(query);
+      console.log( "Si existe en la db", rows)
       const user = rows[0];
-      return { ...user, password: user.password_hash };
-
+      console.log(user, "user")
+      if(!user){
+        return ("Usuario inexistente")
+      }else{
+        return { ...user, password: user.password_hash };
+      }
     } catch (error) {
       throw new Error("Error al buscar usuario por correo electrónico en la base de datos: " + error.message);
     }
@@ -49,7 +52,7 @@
       };
 
       const { rows } = await db.connection.query(query);
-      
+
     } catch (error) {
       throw new Error("Error al actualizar usuario en la base de datos");
     }
@@ -69,12 +72,16 @@
   };
 
   export const comparePassword = async (password, hashedPassword) => {
-    try {
-      const match = await bcrypt.compare(password, hashedPassword);
-      console.log(match)
-      return match;
+    if(!password || !hashedPassword){
 
-    } catch (error) {
-      throw new Error("Error al comparar contraseñas: " + error.message);
+      console.log("Correo no registrado en la bd");
+    }else{
+      try {
+        const match = await bcrypt.compare(password, hashedPassword);
+        console.log("match contraseña", match)
+        return match;
+      } catch (error) {
+        throw new Error("Error al comparar contraseñas: " + error.message);
+      }
     }
   };

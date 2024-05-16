@@ -9,42 +9,77 @@
     <title>Bienvenido</title>
 </head>
 <body>
-    <header>
-        <h1>Residuos Granja UFPSO</h1>
+    <header class="d-flex align-items-center">
+        <img src="img/ecogranja_logo_150x150.svg" alt="Logo" style="width: 150px; height: 150px; margin-right: 10px;">
+
     </header>
+
+    
+    
     <div class="bar">
         <nav>
-            <a href="./waste.ejs">Inicio</a>
+            <a href="/residuos">Residuos</a>
             <a href="#">Productos</a>
-            <a href="./animales.ejs">Animales</a>
+            <a href="/animales">Animales</a>
         </nav>
+    </div>
+
+    <div id="foot-block" class="container text-center">
+        <h2>¡Procesar, imprimir reportes!</h2>
+        <div class="d-flex justify-content-center">
+            <button class="btn btn-primary" id="btnMostrarFormulario">Registrar Nuevo Producto</button>
+            <button class="btn btn-danger ml-2" onclick="eliminarProducto()">Eliminar Producto</button>
+        </div>
     </div>
 
     <main>
         <div id="first-block">
             <h2 id="cent">Productos</h2>
             <div id="product-container">
+                
             </div>
         </div>
+
     </main>
+
     <div id="formulario-container" class="hidden">
         <div id="cerrar-formulario">X</div>
-        <form id="formulario">
+        <form id="formularioProducto" action="/producto" method="POST">
             <h2>Registrar Nuevo Producto</h2>
             <div class="form-group">
                 <label for="nombre">Nombre:</label>
                 <input type="text" id="nombre" name="nombre" required>
             </div>
+            <div class="form-group">
+                <label for="tipo">Tipo:</label>
+                <select id="tipo" name="tipo" required>
+                    <option value="">Seleccione un tipo</option>
+                    <option value="Carnico">Carnico</option>
+                    <option value="Lacteos">Lacteo</option>
+                    <option value="Purina">Concentrado</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="cantidad">Cantidad:</label>
+                <input type="number" id="cantidad" name="cantidad" min="0" required>
+            </div>
+            <input type="date" id="fecha_registro" name="fecha_registro" value="<%= new Date().toISOString() %>">
+            <input type="hidden" id="fecha_salida" name="fecha_salida" value="">
+            <div class="form-group">
+                <label for="id_animal">ID Animal:</label>
+                <input type="number" id="id_animal" name="id_animal" min="1">
+            </div>
+            <button type="submit">Registrar</button>
         </form>
     </div>
-    
-    <div id="foot-block">
-        <h2>¡Procesar, imprimir reportes!</h2>
-        <div>
-            <button id="btnMostrarFormulario">Registrar Nuevo Producto</button>
-            <button onclick="eliminarProducto()">Eliminar Producto</button>
-        </div>
-    </div>
 
+
+    
+    
+
+<!-- Bootstrap JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>    
 </body>
 </html>

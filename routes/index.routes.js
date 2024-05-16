@@ -9,6 +9,6 @@ const router = Router();
 router.use('/producto', Producto);
 router.use('/auth', Auth);
 router.use('/animal', Animal);
-router.use('/residuos', Waste);
+router.use('/residuo', Waste);
 
 export default router;

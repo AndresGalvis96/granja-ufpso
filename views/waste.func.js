@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
         cerrarFormulario();
     });
 
-    fetch('http://localhost:3200/residuos')
+    fetch('http://localhost:3200/residuo')
         .then(response => {
             if (!response.ok) {
                 throw new Error('No se pudo obtener la lista de residuos');
@@ -54,8 +54,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const residuoBox = document.createElement('div');
             residuoBox.classList.add('residuo-box');
             residuoBox.innerHTML = `
-            <p>Especie: ${residuo.descripción}</p>
-            <p>Registrado: ${formatDate(residuo.fecha_generaion)}</p>
+            <p>Descripción: ${residuo.descripcion}</p>
+            <p>Registrado: ${formatDate(residuo.fecha_generacion)}</p>
             <button>Editar</button>
             <button>Procesar</button>`;
             wasteContainer.appendChild(residuoBox);

@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
+    var formulariop = document.getElementById('formularioProducto');
+    console.log(formulariop);
+  
 
     var btnMostrarFormulario = document.getElementById('btnMostrarFormulario');
     if (btnMostrarFormulario) {
@@ -23,12 +26,24 @@ document.addEventListener('DOMContentLoaded', function() {
         var formularioContainer = document.getElementById('formulario-container');
         formularioContainer.style.display = 'none';
     }
-
-    document.getElementById('formulario').addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        cerrarFormulario();
-    });
+    function eliminarProduct(productId) {
+        fetch(`http://localhost:3200/producto/${productId}`, {
+            method: 'DELETE'
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('No se pudo eliminar el producto');
+            }
+            return response.json();
+        })
+        .then(data => {
+            alert('Producto eliminado exitosamente');
+                })
+        .catch(error => {
+            console.error('Error al eliminar el producto:', error);
+        });
+    }
+    
 
     fetch('http://localhost:3200/producto')
         .then(response => {
@@ -39,7 +54,6 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(data => {
             const productos = data.productos;
-
             renderizarProductos(productos);
         })
         .catch(error => {
@@ -58,8 +72,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 <p>Categoría: ${producto.tipo}</p>
                 <p>Stock: ${producto.cantidad} KG</p>
                 <p>Registrado: ${formatDate(producto.fecha_registro)}</p>
-                <button onclick="editarProducto(${producto.id})">Editar</button>
-                <button onclick="eliminarProducto(${producto.id})">Eliminar</button>`;
+                <button  onclick="editarProducto(${producto.id})">Editar</button>
+                <button  onclick="eliminarProducto${(producto.id)}">Eliminar</button>`;
             productContainer.appendChild(productBox);
         });
     }
@@ -68,9 +82,6 @@ document.addEventListener('DOMContentLoaded', function() {
         alert(`Editar producto con ID: ${productId}`);
     }
 
-    function eliminarProducto(productId) {
-        alert(`Eliminar producto con ID: ${productId}`);
-    }
 
     function formatDate(dateString) {
         const date = new Date(dateString);

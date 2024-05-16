@@ -2,24 +2,73 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar Sesión</title>
-    <link rel="stylesheet" href="/styles/styleIndex.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Login</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #044040; /* Fondo verde */
+        }
+        .card {
+            border-radius: 15px; /* Bordes redondeados */
+        }
+        .card {
+            background-color: #B94621; /* Fondo de la tarjeta */
+            color: #ffffff; /* Color del texto */
+            border-radius: 15px; /* Bordes redondeados */
+        }
+        /* Cambiar el color del botón */
+        .btn-primary {
+            background-color: #044040 !important;
+            border-color: #044040 !important;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <form action="/auth/login" method="POST"class="login-form">
-            <h2>Iniciar Sesión</h2>
-            <div class="form-group">
-                <label for="email">Correo electrónico:</label>
-                <input type="email" id="email" name="email" required>
+
+<div class="container d-flex align-items-center justify-content-center vh-100">
+    <div class="row w-100">
+        <div class="col-md-6 mx-auto">
+            <div class="card">
+                <div class="card-body text-center">
+                    <img src="img/ecogranja_logo_150x150.svg" class="img-fluid img-shadow mb-4" alt="Logo">
+                    <h5 class="card-title">BIENVENIDO</h5>
+                    <form action="/auth/login" method="POST" class="login-form">
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" id="password" placeholder="Password" name="password">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block" id="loginBtn" disabled>Login</button>
+                    </form>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="password">Contraseña:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <button type="submit">Iniciar Sesión</button>
-        </form>
+        </div>
     </div>
+
+</div>
+
+<div id="alerta" class="alert alert-danger" style="display: none;">Credenciales incorrectas</div>
+
+<!-- Bootstrap JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    // Deshabilitar el botón de login si los campos están vacíos
+    $(document).ready(function() {
+        $('#email, #password').keyup(function() {
+            var email = $('#email').val();
+            var password = $('#password').val();
+            if (email.trim() !== '' && password.trim() !== '') {
+                $('#loginBtn').prop('disabled', false);
+            } else {
+                $('#loginBtn').prop('disabled', true);
+            }
+        });
+    });
+</script>
 </body>
 </html>

@@ -10,17 +10,24 @@
     <script src="./animal.func.js"></script>
 </head>
 <body>
-    <header>
-        <h1>Residuos Granja UFPSO</h1>
+    <header class="d-flex align-items-center">
+        <img src="img/ecogranja_logo_150x150.svg" alt="Logo" style="width: 150px; height: 150px; margin-right: 10px;">
+        
     </header>
     <div class="bar">
         <nav>
-            <a href="#">Inicio</a>
-            <a href="javascript:history.back()">Productos</a>
+            <a href="/residuos">Residuos</a>
+            <a href="/bienvenido">Productos</a>
             <a href="">Animales</a>
         </nav>
     </div>
-
+    <div id="foot-block">
+        <h2>¡Procesar, imprimir reportes!</h2>
+        <div>
+            <button id="btnMostrarFormulario">Registrar Nuevo Animal</button>
+            <button onclick="norecuerdoelnombre()">¡Procesar animal!</button>
+        </div>
+    </div>
     <main>
         <div id="first-block">
             <h2 id="cent">Animales</h2>
@@ -30,23 +37,33 @@
     </main>
     <div id="formulario-container" class="hidden">
         <div id="cerrar-formulario">X</div>
-        <form id="formulario">
-            <h2>Registrar Nuevo Animal</h2>
+        <form id="formularioAnimal" action="/animal" method="POST">
+            <h2>Registrar Nuevo Producto</h2>
             <div class="form-group">
                 <label for="nombre">Nombre:</label>
                 <input type="text" id="nombre" name="nombre" required>
             </div>
+            <div class="form-group">
+                <label for="tipo">Categoría:</label>
+                <select id="tipo" name="tipo" class="form-control" required>
+                    <option value="">Seleccione</option>
+                    <option value="Carnico">Vacuno</option>
+                    <option value="Lacteos">Pecuario</option>
+                    <option value="Purina">Cunícola</option>
+                    <option value="Purina">Avícola</option>
+                </select>
+            </div>
+            <label for="fecha_registro">fecha Registro</label>
+            <br>
+            <input type="date" id="fecha_registro" name="fecha_registro" value="<%= new Date().toISOString() %>">
+            <br>
+            <input type="hidden" id="fecha_salida" name="fecha_salida" value="">
 
+            <button type="submit">Registrar</button>
         </form>
     </div>
     
-    <div id="foot-block">
-        <h2>¡Procesar, imprimir reportes!</h2>
-        <div>
-            <button id="btnMostrarFormulario">Registrar Nuevo Animal</button>
-            <button onclick="norecuerdoelnombre()">¡Procesar animal!</button>
-        </div>
-    </div>
+
 
 </body>
 </html>

@@ -8,7 +8,8 @@ export const createAnimalModel = async (nombre, tipo, fecha_ingreso, fecha_sacri
     values: [nombre, tipo, fecha_ingreso, fecha_sacrificio],
   };
   const result = await con.connection.query(query);
-  return result.rows[0];
+  
+  return result;
 };
 
 export const getAnimalsModel = async () => {
